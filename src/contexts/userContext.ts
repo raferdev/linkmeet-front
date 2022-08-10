@@ -1,3 +1,5 @@
 import { createContext } from 'react';
 
-export const userContext = createContext(null);
+import { UserContextType } from '../types/userTypes.js';
+
+export const UserContext = createContext({} as UserContextType);

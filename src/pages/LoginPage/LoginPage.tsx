@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { SignUp } from '../../services/routes.js';
+import { SignUp } from '../../services/apiRoutes.js';
 import * as S from './LoginPage.styles.js';
 
 export function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [alias, setAlias] = useState('');
   const [name, setName] = useState('');
@@ -12,7 +14,16 @@ export function LoginPage() {
 
   async function submitHandler(event: React.SyntheticEvent) {
     event.preventDefault();
-    await SignUp(email, alias, name, password);
+    if (password === confirmPassowrd) {
+      const result = await SignUp(email, alias, name, password);
+      if (result) {
+        return navigate('/signin');
+      }
+      if (!result) {
+        return navigate('/signup');
+      }
+    }
+    alert('arruma o password e o de baixo');
   }
   return (
     <S.LoginMain>

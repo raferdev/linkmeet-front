@@ -13,9 +13,16 @@ export async function SignUp(
     email,
     password,
   };
-
-  const result = await api.post('/signup', data);
-  return result.data;
+  try {
+    const result = await api.post('/signup', data);
+    if (result.data.status === 201) {
+      return true;
+    }
+    return false;
+  } catch (e) {
+    console.error('Request error');
+    return false;
+  }
 }
 
 export async function SignIn(data: UserSignIn) {

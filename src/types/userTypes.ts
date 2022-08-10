@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export type UserSignUp = {
   alias: string;
   name: string;
@@ -8,4 +10,16 @@ export type UserSignUp = {
 export type UserSignIn = {
   indentifier: string;
   password: string;
+};
+
+export type UserLog = {
+  alias: string | null;
+  name: string | null;
+  email: string | null;
+  token: string | null;
+};
+
+export type UserContextType = {
+  setUser: Dispatch<SetStateAction<UserLog>>;
+  user: UserLog;
 };

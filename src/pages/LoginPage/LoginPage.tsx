@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 
+import { SignUp } from '../../services/routes.js';
 import * as S from './LoginPage.styles.js';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
-  const [profile, setProfile] = useState('');
+  const [alias, setAlias] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassowrd, setConfirmPassword] = useState('');
 
-  function submitHandler(event: React.SyntheticEvent) {
+  async function submitHandler(event: React.SyntheticEvent) {
     event.preventDefault();
-    console.log('xablau');
+    await SignUp(email, alias, name, password);
   }
   return (
     <S.LoginMain>
@@ -31,8 +32,8 @@ export function LoginPage() {
           name="profile"
           type="text"
           placeholder="fulanodasilva22"
-          value={profile}
-          onChange={(e) => setProfile(e.target.value)}
+          value={alias}
+          onChange={(e) => setAlias(e.target.value)}
           required
         />
         <S.LabelLogin htmlFor="name"> Name</S.LabelLogin>

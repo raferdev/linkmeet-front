@@ -1,28 +1,39 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { Private } from './components/Private.js';
+import { LoadingContext } from './contexts/loadingContext.js';
 import { UserContext } from './contexts/userContext.js';
-import { LoginPage } from './pages/LoginPage/LoginPage.js';
-import { UserLog } from './types/userTypes.js';
+import { loadingState, userState } from './hooks/hooksStates.js';
+import { Home } from './pages/Home/Home.js';
+import { SignInPage } from './pages/SignInPage/SignInPage.js';
+import { SignUpPage } from './pages/SignUpPage/SignUpPage.js';
+import { LoadingType, UserLog } from './types/contextsTypes.js';
 
 const NotImplemented = () => {
   return <h1>Not Implemented</h1>;
 };
 function App() {
-  const userState = {
-    alias: null,
-    name: null,
-    email: null,
-    token: null,
-  };
   const [user, setUser] = useState<UserLog>(userState);
+  const [loading, setLoading] = useState<LoadingType>(loadingState);
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="*" element={<NotImplemented />} />
-      </Routes>
-    </UserContext.Provider>
+    <LoadingContext.Provider value={{ loading, setLoading }}>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Routes>
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/login" element={<SignInPage />} />
+          <Route
+            path="/home"
+            element={
+              <Private>
+                <Home />
+              </Private>
+            }
+          />
+          <Route path="*" element={<NotImplemented />} />
+        </Routes>
+      </UserContext.Provider>
+    </LoadingContext.Provider>
   );
 }
 

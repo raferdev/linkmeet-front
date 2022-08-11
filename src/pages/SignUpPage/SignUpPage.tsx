@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { SignUp } from '../../services/apiRoutes.js';
-import * as S from './LoginPage.styles.js';
+import { LoadingContext } from '../../contexts/loadingContext.js';
+import { SignUp } from '../../services/apiAuthRoutes.js';
+import * as S from './SignUpPage.styles.js';
 
-export function LoginPage() {
+export function SignUpPage() {
+  const { loading, setLoading } = useContext(LoadingContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [alias, setAlias] = useState('');
@@ -14,16 +16,19 @@ export function LoginPage() {
 
   async function submitHandler(event: React.SyntheticEvent) {
     event.preventDefault();
+    setLoading(true);
+
     if (password === confirmPassowrd) {
-      const result = await SignUp(email, alias, name, password);
-      if (result) {
-        return navigate('/signin');
+      const token = await SignUp(email, alias, name, password);
+      if (token) {
+        setLoading(false);
+        return navigate('/login');
       }
-      if (!result) {
+      if (!token) {
+        setLoading(false);
         return navigate('/signup');
       }
     }
-    alert('arruma o password e o de baixo');
   }
   return (
     <S.LoginMain>
@@ -37,6 +42,7 @@ export function LoginPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          disabled={loading ? true : false}
         />
         <S.LabelLogin htmlFor="profile"> Profile Name</S.LabelLogin>
         <S.InputLogin
@@ -46,6 +52,7 @@ export function LoginPage() {
           value={alias}
           onChange={(e) => setAlias(e.target.value)}
           required
+          disabled={loading ? true : false}
         />
         <S.LabelLogin htmlFor="name"> Name</S.LabelLogin>
         <S.InputLogin
@@ -55,6 +62,7 @@ export function LoginPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          disabled={loading ? true : false}
         />
         <S.LabelLogin htmlFor="password"> Password</S.LabelLogin>
         <S.InputLogin
@@ -64,6 +72,7 @@ export function LoginPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          disabled={loading ? true : false}
         />
         <S.LabelLogin htmlFor="confirmPassword"> Confirm Password</S.LabelLogin>
         <S.InputLogin
@@ -73,6 +82,7 @@ export function LoginPage() {
           value={confirmPassowrd}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
+          disabled={loading ? true : false}
         />
         <S.ButtonLogin type="submit">Enviar</S.ButtonLogin>
       </S.FormLogin>

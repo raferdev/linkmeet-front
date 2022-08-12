@@ -86,6 +86,9 @@ export function SignUpPage() {
         />
         <S.ButtonLogin type="submit">Enviar</S.ButtonLogin>
       </S.FormLogin>
+      <S.LinkTo onClick={() => navigate('/login')}>
+        Do you have account? <span>Click here.</span>
+      </S.LinkTo>
     </S.LoginMain>
   );
 }

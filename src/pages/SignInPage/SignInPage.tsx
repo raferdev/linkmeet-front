@@ -55,6 +55,9 @@ export function SignInPage() {
           disabled={loading ? true : false}
         />
         <S.ButtonLogin type="submit">Enviar</S.ButtonLogin>
+        <S.LinkTo onClick={() => navigate('/signup')}>
+          Dont have account? <span>Click here.</span>
+        </S.LinkTo>
       </S.FormLogin>
     </S.LoginMain>
   );

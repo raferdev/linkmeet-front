@@ -29,3 +29,5 @@ export const LabelLogin = styled.label``;
 export const ButtonLogin = styled.button`
   height: 20px;
 `;
+
+export const LinkTo = styled.a``;

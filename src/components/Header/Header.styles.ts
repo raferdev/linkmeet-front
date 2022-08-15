@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { UserHelloTypes } from '../../types/styledTypes.js';
+
 export const HeaderStyles = styled.header`
   position: fixed;
   top: 0;
@@ -31,9 +33,17 @@ export const UserInfo = styled.div`
   box-shadow: -1px 1px 3px 2px #e3f5b7;
 `;
 
-export const UserName = styled.h2`
+export const UserHello = styled.h2<UserHelloTypes>`
   font-family: 'Dancing Script', cursive;
+  position: ${(props) => props.position};
+  top: -15px;
   font-weight: 400;
-  font-size: 30px;
+  font-size: ${(props) => props.height};
+  color: #111111;
+`;
+export const UserName = styled.h4`
+  font-family: 'Edu QLD Beginner', cursive;
+  font-weight: 600;
+  font-size: 24px;
   color: #111111;
 `;

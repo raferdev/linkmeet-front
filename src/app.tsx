@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Private } from './components/Private.js';
 import { LoadingContext } from './contexts/loadingContext.js';
 import { UserContext } from './contexts/userContext.js';
 import { loadingState, userState } from './hooks/hooksStates.js';
@@ -22,14 +21,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<SignInPage />} />
-          <Route
-            path="/home"
-            element={
-              <Private>
-                <Home />
-              </Private>
-            }
-          />
+          <Route path="/home" element={<Home />} />
           <Route path="*" element={<NotImplemented />} />
         </Routes>
       </UserContext.Provider>

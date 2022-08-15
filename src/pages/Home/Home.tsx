@@ -5,7 +5,7 @@ import { Header } from '../../components/Header/Header.js';
 import { Main } from './Home.styles.js';
 
 export function Home() {
-  const loading = true;
+  const loading = false;
   return (
     <Main>
       <Header />

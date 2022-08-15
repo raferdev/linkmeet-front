@@ -32,7 +32,7 @@ export const UserInfo = styled.div`
 `;
 
 export const UserName = styled.h2`
-  font-family: 'Edu QLD Beginner', cursive;
+  font-family: 'Dancing Script', cursive;
   font-weight: 400;
   font-size: 30px;
   color: #111111;

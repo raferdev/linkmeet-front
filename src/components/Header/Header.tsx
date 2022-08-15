@@ -6,11 +6,12 @@ import { HeaderStyles, Title, UserInfo, UserName } from './Header.styles.js';
 export function Header() {
   const { user } = useContext(UserContext);
 
+  const ProfileTitle = 'Hello!';
   return (
     <HeaderStyles>
       <Title>Linkmeet</Title>
       <UserInfo>
-        <UserName>{user.name}</UserName>
+        <UserName>{ProfileTitle}</UserName>
       </UserInfo>
     </HeaderStyles>
   );

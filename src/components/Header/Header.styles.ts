@@ -22,6 +22,7 @@ export const Title = styled.h1`
 `;
 
 export const UserInfo = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,4 +47,81 @@ export const UserName = styled.h4`
   font-weight: 600;
   font-size: 24px;
   color: #111111;
+`;
+
+export const LoginDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 80px;
+  right: 0px;
+  height: 130px;
+  width: 250px;
+  background-color: #5d5e59;
+  border-radius: 5px;
+  box-shadow: -2px 2px 2px 0px #777777;
+  border: 1px solid #302727;
+`;
+
+export const LoginInput = styled.input`
+  outline: none;
+  padding-left: 5px;
+  font-family: 'Edu QLD Beginner', cursive;
+  border-radius: 5px;
+  height: 30px;
+  width: 200px;
+`;
+
+export const ButtonLoginSignUp = styled.div`
+  position: absolute;
+  font-family: 'Edu QLD Beginner', cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 11px;
+  right: -48px;
+  height: 30px;
+  width: 60px;
+  border-left: 1px solid #302727;
+  border-top: 1px solid #302727;
+  border-bottom: 1px solid #302727;
+  border-right: 1px solid #302727;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #fea189;
+  &:hover {
+    border: 2px solid #fcfc58;
+  }
+`;
+
+export const ButtonLoginSignIn = styled.div`
+  position: absolute;
+  font-family: 'Edu QLD Beginner', cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 84px;
+  right: -48px;
+  height: 30px;
+  width: 60px;
+  border-left: 1px solid #302727;
+  border-top: 1px solid #302727;
+  border-bottom: 1px solid #302727;
+  border-right: 1px solid #302727;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #8ff638;
+  &:hover {
+    border: 2px solid #fcfc58;
+  }
+`;
+
+export const LoginLabel = styled.label`
+  font-family: 'Edu QLD Beginner', cursive;
+  font-weight: 700;
+  font-size: 17px;
+  color: white;
 `;

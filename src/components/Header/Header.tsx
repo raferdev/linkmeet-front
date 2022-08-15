@@ -2,7 +2,12 @@ import { useContext } from 'react';
 
 import { UserContext } from '../../contexts/userContext.js';
 import {
+  ButtonLoginSignIn,
+  ButtonLoginSignUp,
   HeaderStyles,
+  LoginDiv,
+  LoginInput,
+  LoginLabel,
   Title,
   UserHello,
   UserInfo,
@@ -20,6 +25,14 @@ export function Header() {
     <HeaderStyles>
       <Title>Linkmeet</Title>
       <UserInfo>
+        <LoginDiv>
+          <LoginLabel>User</LoginLabel>
+          <LoginInput placeholder="Email or Profile" />
+          <LoginLabel>Password</LoginLabel>
+          <LoginInput placeholder="Password" />
+          <ButtonLoginSignUp>Sign Up</ButtonLoginSignUp>
+          <ButtonLoginSignIn>Send</ButtonLoginSignIn>
+        </LoginDiv>
         <UserHello
           position={user.name ? 'fixed' : 'inital'}
           height={user.name ? '23px' : '30px'}

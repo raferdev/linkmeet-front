@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ScaleLoader } from 'react-spinners';
 
 import { LoadingContext } from '../../contexts/loadingContext.js';
@@ -15,7 +16,10 @@ import {
   LoginInput,
   LoginLabel,
   LogoutHeaderButton,
+  MenuButton,
+  MenuDiv,
   MenuHeaderButton,
+  NavHeader,
   Title,
   UserHello,
   UserInfo,
@@ -28,6 +32,8 @@ export function Header() {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [selected, setSelected] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
 
   let ProfileTitle = 'Hello!';
 
@@ -55,11 +61,28 @@ export function Header() {
       alert('Profile identifier or password is incorrect!');
     }
   }
+
   function Logout() {
     setUser(userState);
   }
+
+  function BackgroundDisable() {
+    setSelected(false);
+    setMenu(false);
+  }
+
+  function MenuCardNav() {
+    navigate(`/${user.alias}/cards`);
+    setMenu(false);
+  }
   return (
     <>
+      <MenuDiv display={menu ? 'flex' : 'none'}>
+        <MenuButton onClick={MenuCardNav}>Cards</MenuButton>
+        <MenuButton>Organizations</MenuButton>
+        <MenuButton>Notifications</MenuButton>
+        <MenuButton>Search</MenuButton>
+      </MenuDiv>
       <LoginForm display={selected ? 'flex' : 'none'} onSubmit={submitHandler}>
         <LoginLabel htmlFor="identifier">User</LoginLabel>
         <LoginInput
@@ -97,12 +120,19 @@ export function Header() {
         </ButtonLoginSignIn>
       </LoginForm>
       <LoginBackground
-        onClick={() => setSelected(false)}
-        display={selected ? 'flex' : 'none'}
+        onClick={BackgroundDisable}
+        display={selected || menu ? 'flex' : 'none'}
       ></LoginBackground>
       <HeaderStyles>
         <Title>Linkmeet</Title>
-        <UserInfo>
+        <NavHeader>
+          {user.name ? (
+            <MenuHeaderButton onClick={() => setMenu(true)}>
+              Menu
+            </MenuHeaderButton>
+          ) : (
+            <></>
+          )}
           {user.name ? (
             <LogoutHeaderButton onClick={Logout}>Logout</LogoutHeaderButton>
           ) : (
@@ -110,7 +140,8 @@ export function Header() {
               Login
             </LoginHeaderButton>
           )}
-          {user.name ? <MenuHeaderButton>Menu</MenuHeaderButton> : <></>}
+        </NavHeader>
+        <UserInfo>
           <UserHello
             position={user.name ? 'fixed' : 'inital'}
             height={user.name ? '25px' : '30px'}

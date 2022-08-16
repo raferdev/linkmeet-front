@@ -21,7 +21,7 @@ export function SignInPage() {
     if (user) {
       setUser(user);
       setLoading(false);
-      return navigate('/home');
+      return navigate('/search');
     }
 
     if (!user) {

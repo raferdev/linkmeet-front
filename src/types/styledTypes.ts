@@ -10,3 +10,7 @@ export type LoginBackgroundTypes = {
 export type LoginFormTypes = {
   display: string;
 };
+
+export type MenuDivType = {
+  display: string;
+};

@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { Private } from './components/Private.js';
 import { LoadingContext } from './contexts/loadingContext.js';
 import { UserContext } from './contexts/userContext.js';
 import { loadingState, userState } from './hooks/hooksStates.js';
-import { Home } from './pages/Home/Home.js';
+import { CardPage } from './pages/Card/CardPage.js';
+import { NewCardPage } from './pages/NewCard/NewCardPage.js';
+import { Search } from './pages/Search/Search.js';
 import { SignInPage } from './pages/SignInPage/SignInPage.js';
 import { SignUpPage } from './pages/SignUpPage/SignUpPage.js';
 import { LoadingType, UserLog } from './types/contextsTypes.js';
@@ -21,7 +24,23 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<SignInPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route
+            path="/:profile/cards"
+            element={
+              <Private>
+                <CardPage />
+              </Private>
+            }
+          />
+          <Route
+            path="/:profile/cards/new"
+            element={
+              <Private>
+                <NewCardPage />
+              </Private>
+            }
+          />
           <Route path="*" element={<NotImplemented />} />
         </Routes>
       </UserContext.Provider>
